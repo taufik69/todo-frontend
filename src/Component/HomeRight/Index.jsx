@@ -14,7 +14,18 @@ const uploadInfo = () => {
     setfromdata({ ...fromdata, [name]: value });
   };
 
-  console.log("fromdata", fromdata);
+  //   HandleSubmit functionality
+  const HandleSubmit = (event) => {
+    event.preventDefault();
+    setfromdata({
+      ...fromdata,
+      fullName: "",
+      email: "",
+      Degisnation: "",
+      EmployId: "",
+    });
+  };
+  console.log(fromdata);
   return (
     <>
       <form>
@@ -26,6 +37,7 @@ const uploadInfo = () => {
             type="text"
             name="fullName"
             id="fullName"
+            value={fromdata.fullName}
             onChange={Handleinput}
           />
         </div>
@@ -37,6 +49,7 @@ const uploadInfo = () => {
             type="eamil"
             name="email"
             id="email"
+            value={fromdata.email}
             onChange={Handleinput}
           />
         </div>
@@ -49,6 +62,7 @@ const uploadInfo = () => {
             type="text"
             name="Degisnation"
             id="Degisnation"
+            value={fromdata.Degisnation}
             onChange={Handleinput}
           />
         </div>
@@ -61,6 +75,7 @@ const uploadInfo = () => {
             type="EmployId"
             name="EmployId"
             id="EmployId"
+            value={fromdata.EmployId}
             onChange={Handleinput}
           />
         </div>
@@ -68,6 +83,7 @@ const uploadInfo = () => {
           <button
             type="submit"
             className="px-10  py-2  border-2 border-green-500 "
+            onClick={HandleSubmit}
           >
             Submit
           </button>
