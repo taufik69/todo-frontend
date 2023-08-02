@@ -8,6 +8,13 @@ const uploadInfo = () => {
     EmployId: "",
   });
 
+  const [error, seterror] = useState({
+    fullNameError: "",
+    emailError: "",
+    DegisnationError: "",
+    EmployIdError: "",
+  });
+
   //   Handleinput button machanism
   const Handleinput = (event) => {
     const { name, value } = event.target;
@@ -17,6 +24,7 @@ const uploadInfo = () => {
   //   HandleSubmit functionality
   const HandleSubmit = (event) => {
     event.preventDefault();
+
     setfromdata({
       ...fromdata,
       fullName: "",
@@ -25,7 +33,7 @@ const uploadInfo = () => {
       EmployId: "",
     });
   };
-  console.log(fromdata);
+
   return (
     <>
       <form>
