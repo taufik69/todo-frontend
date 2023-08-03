@@ -1,5 +1,5 @@
-import React, { useState } from "react";
 import axios from "axios";
+import React, { useState } from "react";
 
 const uploadInfo = () => {
   const [fromdata, setfromdata] = useState({
@@ -23,32 +23,19 @@ const uploadInfo = () => {
   };
 
   //   HandleSubmit functionality
-  const HandleSubmit = async (event) => {
-    try {
-      event.preventDefault();
-      // post data from frontend to backend via axios
-      let axiosData = await axios.post(
-        "http://localhost:3000/api/v1/home/postinfo",
-        {
-          fullName: fromdata.fullName,
-          email: fromdata.email,
-          degisnation: fromdata.Degisnation,
-          employeId: fromdata.EmployId,
-        }
-      );
-      console.log("after successsfully axiosData : ", axiosData.data);
+  let HandleSubmit = (event) => {
+    event.preventDefault();
+    // post data from frontend to backend via axios
 
-      setfromdata({
-        ...fromdata,
-        fullName: "",
-        email: "",
-        Degisnation: "",
-        EmployId: "",
-      });
-    } catch (error) {
-      console.log("error from error part : ", error);
-    }
+    setfromdata({
+      ...fromdata,
+      fullName: "",
+      email: "",
+      Degisnation: "",
+      EmployId: "",
+    });
   };
+
   return (
     <>
       <form>
