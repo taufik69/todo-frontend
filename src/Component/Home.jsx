@@ -4,7 +4,7 @@ import HomeLeft from "./HomeLeft/Index";
 const Home = () => {
   return (
     <>
-      <div className="flex min-h-screen">
+      <div className="flex  fixed">
         <div className="w-3/5 bg-black p-10">
           <HomeLeft />
         </div>
