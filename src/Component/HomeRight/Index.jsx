@@ -1,5 +1,5 @@
-import axios from "axios";
 import React, { useState } from "react";
+import axios from "axios";
 
 const uploadInfo = () => {
   const [fromdata, setfromdata] = useState({
@@ -9,12 +9,7 @@ const uploadInfo = () => {
     EmployId: "",
   });
 
-  const [error, seterror] = useState({
-    fullNameError: "",
-    emailError: "",
-    DegisnationError: "",
-    EmployIdError: "",
-  });
+  const [error, seterror] = useState(null);
 
   //   Handleinput button machanism
   const Handleinput = (event) => {
@@ -23,19 +18,34 @@ const uploadInfo = () => {
   };
 
   //   HandleSubmit functionality
-  let HandleSubmit = (event) => {
-    event.preventDefault();
-    // post data from frontend to backend via axios
+  let HandleSubmit = async (event) => {
+    try {
+      event.preventDefault();
+      // post data from frontend to backend via axios
+      let axiosPost = await axios.post(
+        "http://localhost:3000/api/v1/home/postinfo",
+        {
+          fullName: fromdata.fullName,
+          email: fromdata.email,
+          degisnation: fromdata.Degisnation,
+          employeId: fromdata.EmployId,
+        }
+      );
 
-    setfromdata({
-      ...fromdata,
-      fullName: "",
-      email: "",
-      Degisnation: "",
-      EmployId: "",
-    });
+      setfromdata({
+        ...fromdata,
+        fullName: "",
+        email: "",
+        Degisnation: "",
+        EmployId: "",
+      });
+      // state null the error
+      seterror(null);
+    } catch (error) {
+      seterror(error.response.data.error);
+    }
   };
-
+  // console.log("error is : ", error.startsWith("email"));
   return (
     <>
       <form>
@@ -51,6 +61,11 @@ const uploadInfo = () => {
             onChange={Handleinput}
           />
         </div>
+        {error && (
+          <span className="text-xm text-red-600">
+            {error.includes("fullname") ? error : null}
+          </span>
+        )}
         <div className="py-4 text-white">
           <label>Email</label>
           <br />
@@ -63,7 +78,11 @@ const uploadInfo = () => {
             onChange={Handleinput}
           />
         </div>
-
+        {error && (
+          <span className="text-xm text-red-600">
+            {error.includes("email") ? error : null}
+          </span>
+        )}
         <div className="py-4 text-white">
           <label>Degisnation</label>
           <br />
@@ -76,7 +95,11 @@ const uploadInfo = () => {
             onChange={Handleinput}
           />
         </div>
-
+        {error && (
+          <span className="text-xm text-red-600">
+            {error.includes("degisnation") ? error : null}
+          </span>
+        )}
         <div className="py-4 text-white">
           <label>EmployId</label>
           <br />
@@ -89,6 +112,11 @@ const uploadInfo = () => {
             onChange={Handleinput}
           />
         </div>
+        {error && (
+          <span className="text-xm text-red-600">
+            {error.includes("employeId") ? error : null}
+          </span>
+        )}
         <div className="py-4 flex items-center justify-end text-white">
           <button
             type="submit"
