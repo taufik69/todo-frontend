@@ -12,11 +12,18 @@ const HomeLeft = () => {
     };
     fethData();
   }, []);
-  console.log("setfetchData :", fetchData);
+
+  // edit button functionality start
+  const Handledelete = (items) => {
+    console.log("clickable item is :", items);
+  };
   return (
     <div className="flex flex-wrap gap-9 items-center justify-center overflow-y-scroll h-screen">
-      {fetchData.map((item) => (
-        <div className="text-red-500 p-5 w-[45%] text-center  bg-white text-base rounded-sm ">
+      {fetchData.map((item, i) => (
+        <div
+          className="text-red-500 p-5 w-[45%] text-center  bg-white text-base rounded-sm "
+          key={i}
+        >
           <div className="body">
             <h1>{item.fullName} </h1>
             <h2>{item.email}</h2>
@@ -26,7 +33,10 @@ const HomeLeft = () => {
               <button className="border-2 border-green-600 px-3 py-1 bg-green-500">
                 edit
               </button>
-              <button className="border-2 border-red-600 px-3 py-1 bg-red-500 text-white">
+              <button
+                className="border-2 border-red-600 px-3 py-1 bg-red-500 text-white"
+                onClick={() => Handledelete(item)}
+              >
                 delete
               </button>
             </div>
