@@ -4,8 +4,8 @@ import HomeLeft from "./HomeLeft/Index";
 const Home = () => {
   return (
     <>
-      <div className="flex  fixed">
-        <div className="w-3/5 bg-black p-10">
+      <div className="flex">
+        <div className="w-3/5 bg-black ">
           <HomeLeft />
         </div>
         <div className="w-2/5 bg-gray-800 flex justify-center items-center">

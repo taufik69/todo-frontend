@@ -14,11 +14,18 @@ const HomeLeft = () => {
   }, []);
 
   // edit button functionality start
-  const Handledelete = (items) => {
-    console.log("clickable item is :", items);
+  const Handledelete = async (items) => {
+    try {
+      let apiUrl = `http://localhost:3000/api/v1/home/delete/${items._id}`;
+      let deleteItem = await axios.delete(apiUrl);
+      console.log("clickable item is :", deleteItem);
+    } catch (error) {
+      console.log("error from handle delete item is :", error);
+    }
   };
+
   return (
-    <div className="flex flex-wrap gap-9 items-center justify-center overflow-y-scroll h-screen">
+    <div className="flex flex-wrap gap-9 items-center justify-around overflow-y-scroll  h-screen">
       {fetchData.map((item, i) => (
         <div
           className="text-red-500 p-5 w-[45%] text-center  bg-white text-base rounded-sm "
