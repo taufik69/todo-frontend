@@ -8,6 +8,7 @@ const HomeLeft = () => {
   const [updateid, setupdateid] = useState("");
   const [realtime, setrealtime] = useState(false);
   const [expand, setexpand] = useState(false);
+  let [scrolltop, setscrolltop] = useState(null);
   const [fromdata, setfromdata] = useState({
     fullName: "",
     email: "",
@@ -94,8 +95,23 @@ const HomeLeft = () => {
   const HandleExpand = () => {
     setexpand(!expand);
   };
+
+  // play with scroll
+  useEffect(() => {
+    const parent_div = document.querySelector("#parent_div");
+    const fixedElement = document.querySelector("#fixedElement");
+    parent_div.addEventListener("scroll", (event) => {
+      console.log("parent_div");
+      // setscrolltop(Math.round(event.target.scrollTop / 20));
+      fixedElement.style.position = "fixed";
+      fixedElement.style.transform = `translateY(${event.target.scrollTop}px)`;
+    });
+  }, []);
   return (
-    <div className="flex flex-wrap gap-9 items-center justify-around overflow-y-scroll  h-screen relative">
+    <div
+      id="parent_div"
+      className={`flex flex-wrap gap-9 items-center justify-around overflow-y-scroll h-screen  relative`}
+    >
       <div
         className={
           expand
@@ -111,7 +127,7 @@ const HomeLeft = () => {
           className="text-red-500 p-5 w-[45%] text-center  bg-white text-base rounded-sm "
           key={i}
         >
-          <div className="body">
+          <div>
             <h1>FullName : {item.fullName} </h1>
             <h2> Email: {item.email}</h2>
             <h3> Degisnation:{item.degisnation}</h3>
@@ -134,7 +150,10 @@ const HomeLeft = () => {
         </div>
       ))}
       {modal && (
-        <div className="text-white absolute  bg-gray-900 w-[55%] h-[80%] p-5 ">
+        <div
+          id="fixedElement"
+          className={`text-white  absolute   left-[15%]  bg-gray-900 w-[75%]  p-5`}
+        >
           <div
             className="p-4 bg-red-600  cursor-pointer inline-block"
             onClick={() => setmodal(false)}
