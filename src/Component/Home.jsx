@@ -1,6 +1,6 @@
 import React from "react";
-import UploadInfo from "./HomeRight/Index";
-import HomeLeft from "./HomeLeft/Index";
+import HomeLeft from "./HomeLeft/Index.jsx";
+import HomeRight from "./HomeRight/Index.jsx";
 const Home = () => {
   return (
     <>
@@ -9,7 +9,7 @@ const Home = () => {
           <HomeLeft />
         </div>
         <div className="w-2/5 bg-gray-800 flex justify-center items-center">
-          <UploadInfo />
+          <HomeRight />
         </div>
       </div>
     </>
