@@ -45,7 +45,7 @@ const uploadInfo = () => {
       seterror(error.response.data.error);
     }
   };
-  // console.log("error is : ", error.startsWith("email"));
+
   return (
     <>
       <form>
