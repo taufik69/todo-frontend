@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 
 const HomeLeft = () => {
@@ -9,6 +9,7 @@ const HomeLeft = () => {
   const [realtime, setrealtime] = useState(false);
   const [expand, setexpand] = useState(false);
   let [scrolltop, setscrolltop] = useState(null);
+  const modalRef = useRef();
   const [fromdata, setfromdata] = useState({
     fullName: "",
     email: "",
@@ -98,16 +99,27 @@ const HomeLeft = () => {
 
   // play with scroll
   useEffect(() => {
-    const parent_div = document.querySelector("#parent_div");
-    const fixedElement = document.querySelector("#fixedElement");
+    let parent_div = document.querySelector("#parent_div");
+    let fixedElement = document.querySelector("#fixedElement");
     parent_div.addEventListener("scroll", (event) => {
-      // setscrolltop(Math.round(event.target.scrollTop / 20));
-      // fixedElement.style.position = "fixed";
       fixedElement.style.transform = `translateY(${
         event.target.scrollTop / 30
       }px)`;
     });
   }, []);
+
+  // useEffect(() => {
+  //   let modal = document.getElementById("fixedElement");
+
+  //   // make funtionality for oter click
+  //   modal.addEventListener("click", (events) => {
+  //     if (modalRef.current.contains(events.target)) {
+  //       setmodal(true);
+  //     } else {
+  //       setmodal(false);
+  //     }
+  //   });
+  // }, [modal]);
   return (
     <div
       id="parent_div"
@@ -153,6 +165,7 @@ const HomeLeft = () => {
       {modal && (
         <div
           id="fixedElement"
+          ref={modalRef}
           className={`text-white fixed left-[7%]  bg-gray-900 w-[45%]  p-5`}
         >
           <div
