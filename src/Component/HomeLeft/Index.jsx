@@ -102,7 +102,7 @@ const HomeLeft = () => {
     const fixedElement = document.querySelector("#fixedElement");
     parent_div.addEventListener("scroll", (event) => {
       // setscrolltop(Math.round(event.target.scrollTop / 20));
-      fixedElement.style.position = "fixed";
+      // fixedElement.style.position = "fixed";
       fixedElement.style.transform = `translateY(${
         event.target.scrollTop / 30
       }px)`;
@@ -153,7 +153,7 @@ const HomeLeft = () => {
       {modal && (
         <div
           id="fixedElement"
-          className={`text-white  absolute   left-[7%]  bg-gray-900 w-[45%]  p-5`}
+          className={`text-white fixed left-[7%]  bg-gray-900 w-[45%]  p-5`}
         >
           <div
             className="p-4 bg-red-600  cursor-pointer inline-block"
